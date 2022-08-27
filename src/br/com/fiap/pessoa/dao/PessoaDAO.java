@@ -1,9 +1,9 @@
-package br.com.fiap.cliente.model.dao;
+package br.com.fiap.pessoa.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.fiap.cliente.model.PessoaVo;
+import br.com.fiap.pessoa.model.PessoaVo;
 
 public interface PessoaDAO {
 

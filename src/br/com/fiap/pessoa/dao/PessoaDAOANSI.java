@@ -1,4 +1,4 @@
-package br.com.fiap.cliente.model.dao;
+package br.com.fiap.pessoa.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.fiap.cliente.model.PessoaVo;
 import br.com.fiap.jdbc.adapter.DataAccessObjectAdapter;
+import br.com.fiap.pessoa.model.PessoaVo;
 
 public class PessoaDAOANSI extends DataAccessObjectAdapter implements PessoaDAO {
 
@@ -22,6 +22,7 @@ public class PessoaDAOANSI extends DataAccessObjectAdapter implements PessoaDAO 
 			try {
 				connection = conectar();
 				StringBuffer sql = new StringBuffer();
+				
 				sql.append("INSERT INTO ");
 				sql.append(			"PESSOA ");
 				sql.append(	"( ATRIDPESSOA, ");
@@ -143,9 +144,9 @@ public class PessoaDAOANSI extends DataAccessObjectAdapter implements PessoaDAO 
 		}
 	}
 
-	public PessoaVo obterPessoaPorChave(Integer atrIdPessoa, Integer atridUsuario) throws SQLException {
+	public PessoaVo obterPessoaPorChave(Integer atrIdPessoa, Integer atrIdUsuario) throws SQLException {
 		try {
-			System.out.println("iniciando metodo: obterPessoaPorChave(atrIdPessoa, atridUsuario).");
+			System.out.println("iniciando metodo: obterPessoaPorChave(atrIdPessoa, atrIdUsuario).");
 
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
@@ -153,6 +154,7 @@ public class PessoaDAOANSI extends DataAccessObjectAdapter implements PessoaDAO 
 			PessoaVo result = null;
 
 			try {
+				
 				connection = conectar();
 				StringBuffer sql = new StringBuffer();
 
@@ -171,7 +173,7 @@ public class PessoaDAOANSI extends DataAccessObjectAdapter implements PessoaDAO 
 
 				preparedStatement = connection.prepareStatement(sql.toString());
 				preparedStatement.setInt(1, atrIdPessoa);
-				preparedStatement.setInt(2, atridUsuario);
+				preparedStatement.setInt(2, atrIdUsuario);
 				resultSet = preparedStatement.executeQuery();
 
 				while (resultSet.next()) {
@@ -194,7 +196,7 @@ public class PessoaDAOANSI extends DataAccessObjectAdapter implements PessoaDAO 
 				closeConnection(connection);
 			}
 		} finally {
-			System.out.println("finalizando metodo: obterPessoaPorChave(atrIdPessoa, atridUsuario).");
+			System.out.println("finalizando metodo: obterPessoaPorChave(atrIdPessoa, atrIdUsuario).");
 		}
 	}
 

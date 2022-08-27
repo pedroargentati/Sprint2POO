@@ -21,7 +21,7 @@
 //    Add Constraint PessoaPK
 //    Primary Key(atrIdPessoa, atrIdUsuario);
 
-package br.com.fiap.cliente.model;
+package br.com.fiap.pessoa.model;
 
 public class PessoaVo {
 	

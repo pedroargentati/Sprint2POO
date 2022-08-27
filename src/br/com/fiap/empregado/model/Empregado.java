@@ -1,6 +1,6 @@
 package br.com.fiap.empregado.model;
 
-import br.com.fiap.cliente.model.PessoaVo;
+import br.com.fiap.pessoa.model.PessoaVo;
 
 public abstract class Empregado extends PessoaVo {
 
