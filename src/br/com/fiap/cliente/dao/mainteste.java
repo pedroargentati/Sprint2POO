@@ -1,6 +1,5 @@
 package br.com.fiap.cliente.dao;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +9,6 @@ import br.com.fiap.cliente.dao.bd.ClientePFDAOANSI;
 import br.com.fiap.cliente.dao.bd.ClientePJDAOANSI;
 import br.com.fiap.cliente.model.ClientePFVo;
 import br.com.fiap.cliente.model.ClientePJVo;
-import br.com.fiap.cliente.model.ClienteVo;
 
 public class mainteste {
 
@@ -35,7 +33,7 @@ public class mainteste {
 		
 //		clienteDAO.cadastrarCliente(cliente1);
 //		System.out.println(clienteDAO.obterClientePorChave(1));
-//		System.out.println(clienteDAO.obterListaCliente());
+		System.out.println(clienteDAO.obterListaClienteEPJ());
 //		clienteDAO.alterarCliente(cliente2);
 //		clienteDAO.excluirCliente(cliente1);
 		
@@ -51,7 +49,7 @@ public class mainteste {
 				/*	TABELA CLIENTE PJ */
 		
 		
-		
+//		
 //		ClientePJDAOANSI clientepjDAOANSI = new ClientePJDAOANSI();
 //		ClientePJVo clientepj1 = new ClientePJVo();
 //		clientepj1.setId_cli(1);
@@ -63,7 +61,7 @@ public class mainteste {
 //	    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
 //	    java.util.Date dt = sdf.parse(input);
 //	    java.sql.Date dtSql = new java.sql.Date(dt.getTime());
-//		
+//////		
 //		clientepj1.setDt_fundacao(dtSql);
 //		clientepjDAOANSI.cadastrarClientePJ(clientepj1);
 //		System.out.println(clientepjDAOANSI.obterClientePJPorChave(1));
@@ -82,27 +80,27 @@ public class mainteste {
 //		private String 	rg_cli;
 //		private Date 	dt_nscmt_cli;
 //		private String 	sexo_cli;
-		
-	ClientePFDAOANSI clientePFDAOANSI = new ClientePFDAOANSI();
-	ClientePFVo clientepf1 = new ClientePFVo();
-	clientepf1.setId_cli(1);
-	clientepf1.setCpf_cli("123456789-99");
-	clientepf1.setRg_cli("3211123");
-	
-	String input = "02/19/2003 18:29:09";
-    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
-    java.util.Date dt = sdf.parse(input);
-    java.sql.Date dtSql = new java.sql.Date(dt.getTime());
-	
-	
-	clientepf1.setDt_nscmt_cli(dtSql);
-	clientepf1.setSexo_cli("M");
-	
+//		
+//	ClientePFDAOANSI clientePFDAOANSI = new ClientePFDAOANSI();
+//	ClientePFVo clientepf1 = new ClientePFVo();
+//	clientepf1.setId_cli(1);
+//	clientepf1.setCpf_cli("123456789-99");
+//	clientepf1.setRg_cli("3211123");
+//	
+//	String input = "02/19/2003 18:29:09";
+//    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+//    java.util.Date dt = sdf.parse(input);
+//    java.sql.Date dtSql = new java.sql.Date(dt.getTime());
+//	
+//	
+//	clientepf1.setDt_nscmt_cli(dtSql);
+//	clientepf1.setSexo_cli("M");
+//	
 //	clientePFDAOANSI.cadastrarClientePF(clientepf1);
 //	System.out.println(clientePFDAOANSI.obterClientePFPorChave(1));
 //	System.out.println(clienteDAO.obterListaCliente());
 //	clientePFDAOANSI.alterarClientePF(clientepf1);
-	clientePFDAOANSI.excluirClientePF(1);
+//	clientePFDAOANSI.excluirClientePF(1);
 	
 	}
 

@@ -146,6 +146,69 @@ public class ClienteDAOANSI extends DataAccessObjectAdapter implements ClienteDA
 			System.out.println("finalizando metodo: obterListaCliente()");
 		}
 	}
+	
+	public List<ClienteVo> obterListaClienteEPJ() throws SQLException {
+		try {
+			System.out.println("iniciando metodo: obterListaClienteEPJ().");
+
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+
+			List<ClienteVo> result = null;
+
+			try {
+				connection = conectar();
+				StringBuffer sql = new StringBuffer();
+
+				sql.append("SELECT ");
+				sql.append(		"TB_CLIENTE.ID_CLI, ");
+				sql.append(		"TB_CLIENTE.NM_CLIENTE, ");
+				sql.append(		"TB_CLIENTE.TP_CLIENTE, ");
+				sql.append(		"TB_CLIENTE.TEL_CLIENTE, ");
+				sql.append(		"TB_CLIENTE.EMAIL_CLIENTE, ");
+				sql.append(		"TB_CLIENTE_PJ.CNPJ, ");
+				sql.append(		"TB_CLIENTE_PJ.RAZAO_SOCIAL, ");
+				sql.append(		"TB_CLIENTE_PJ.NM_FANTASIA, ");
+				sql.append(		"TB_CLIENTE_PJ.DT_FUNDACAO ");
+				sql.append(	"FROM ");
+				sql.append(	    "TB_CLIENTE TB_CLIENTE ");
+				sql.append(		"LEFT JOIN TB_CLIENTE_PJ TB_CLIENTE_PJ ");
+				sql.append(			"ON TB_CLIENTE.ID_CLI = TB_CLIENTE_PJ.ID_CLI");
+
+				preparedStatement = connection.prepareStatement(sql.toString());
+				resultSet = preparedStatement.executeQuery();
+				result = new ArrayList<>();
+
+				while (resultSet.next()) {
+					ClienteVo vo = new ClienteVo();
+					
+					vo.setId_cli		   ( resultSet.getInt("ID_CLI") );
+					vo.setNm_cliente	   ( resultSet.getString("NM_CLIENTE") );
+					vo.setTp_cliente	   ( resultSet.getString("TP_CLIENTE") );
+					vo.setTel_cliente	   ( resultSet.getString("TEL_CLIENTE") );
+					vo.setEmail_cliente	   ( resultSet.getString("EMAIL_CLIENTE") );
+					vo.setCnpj			   ( resultSet.getString ("CNPJ") );
+					vo.setRazao_social	   ( resultSet.getString ("RAZAO_SOCIAL") );
+					vo.setNm_fantasia	   ( resultSet.getString ("NM_FANTASIA") );
+					vo.setDt_fundacao	   ( resultSet.getDate   ("DT_FUNDACAO") );
+					
+					result.add(vo);
+				}
+
+				return result;
+				
+			} catch (SQLException sqle) {
+				throw new SQLException(sqle);
+			} finally {
+				closeResultSet(resultSet);
+				closeStatement(preparedStatement);
+				closeConnection(connection);
+			}
+		} finally {
+			System.out.println("finalizando metodo: obterListaClienteEPJ()");
+		}
+	}
 
 	public ClienteVo obterClientePorChave(Integer id_cli) throws SQLException {
 		try {
@@ -246,19 +309,4 @@ public class ClienteDAOANSI extends DataAccessObjectAdapter implements ClienteDA
 		
 	}
 	
-	private void validateClientType(Integer Id_cli) throws SQLException {
-			var clientePJDAOANSI = new ClientePJDAOANSI();
-			if (clientePJDAOANSI.obterClientePJPorChave(Id_cli) != null) {
-				clientePJDAOANSI.excluirClientePJ(Id_cli);
-			} else {
-				return;
-			}
-			var clientePFDAOANSI = new ClientePFDAOANSI();
-			if (clientePFDAOANSI.obterClientePFPorChave(Id_cli) != null) {
-				clientePFDAOANSI.excluirClientePF(Id_cli);
-			} else {
-				return;
-			}
-		}
-
 }

@@ -23,6 +23,8 @@
 
 package br.com.fiap.cliente.model;
 
+import java.sql.Date;
+
 public class ClienteVo {
 	
 	private Integer	 id_cli;
@@ -36,8 +38,17 @@ public class ClienteVo {
 	private Integer cd_end_cliente;
 	private Integer cd_classificacao;
 	private Integer cd_conta;
+		
+			/*	Campos da ClientePJ */
+	
+	private String 	cnpj;
+	private String 	razao_social;
+	private String 	nm_fantasia;
+	private Date 	dt_fundacao;
 	
 			/*	Construtores */
+	
+	
 	
 	public ClienteVo(Integer id_cli, String nm_cliente, String tp_cliente, String tel_cliente, String email_cliente) {
 		super();
@@ -104,15 +115,26 @@ public class ClienteVo {
 		return cd_classificacao;
 	}
 	
+//	private String 	cnpj;
+//	private String 	razao_social;
+//	private String 	nm_fantasia;
+//	private Date 	dt_fundacao;
+	
 	@Override
 	public String toString() { 
-		String select = " \n * Id cliente: " 	 	+ id_cli 	    +
-						" \n * Nome cliente: "      + nm_cliente    + 
-						" \n * Tipo cliente: " 	    + tp_cliente    + 
-						" \n * Telefone cliente: " 	+ tel_cliente   + 
-						" \n * Email Cliente: " 	+ email_cliente + "\n";
-		
-		return select.replaceAll(",", "");
+		StringBuffer ts = new StringBuffer();
+		ts.append(" \n * Id cliente: " 	 	+ id_cli 	    ); 
+		ts.append(" \n * Nome cliente: "      + nm_cliente    );
+		ts.append(" \n * Tipo cliente: " 	    + tp_cliente    );
+		ts.append(" \n * Telefone cliente: " 	+ tel_cliente);
+		ts.append(" \n * Email Cliente: " 	+ email_cliente );
+						
+		if(cnpj != null && razao_social != null && nm_fantasia != null && dt_fundacao != null) {
+			ts.append("\n * Cnpj: "			+ cnpj );
+			ts.append("\n * Nome Fantasia: " 	+ nm_fantasia);
+			ts.append("\n * DATA FUNDAÇÃO: " 	+ dt_fundacao 	);
+		}
+		return ts.toString();
 	}
 
 	public void setCd_classificacao(Integer cd_classificacao) {
@@ -125,6 +147,38 @@ public class ClienteVo {
 
 	public void setCd_conta(Integer cd_conta) {
 		this.cd_conta = cd_conta;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getRazao_social() {
+		return razao_social;
+	}
+
+	public void setRazao_social(String razao_social) {
+		this.razao_social = razao_social;
+	}
+
+	public String getNm_fantasia() {
+		return nm_fantasia;
+	}
+
+	public void setNm_fantasia(String nm_fantasia) {
+		this.nm_fantasia = nm_fantasia;
+	}
+
+	public Date getDt_fundacao() {
+		return dt_fundacao;
+	}
+
+	public void setDt_fundacao(Date dt_fundacao) {
+		this.dt_fundacao = dt_fundacao;
 	}
 
 }
