@@ -147,6 +147,69 @@ public class ClienteDAOANSI extends DataAccessObjectAdapter implements ClienteDA
 		}
 	}
 	
+	public List<ClienteVo> obterListaClienteEPF() throws SQLException {
+		try {
+			System.out.println("iniciando metodo: obterListaClienteEPF().");
+
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+
+			List<ClienteVo> result = null;
+
+			try {
+				connection = conectar();
+				StringBuffer sql = new StringBuffer();
+
+				sql.append("SELECT ");
+				sql.append(		"TB_CLIENTE.ID_CLI, ");
+				sql.append(		"TB_CLIENTE.NM_CLIENTE, ");
+				sql.append(		"TB_CLIENTE.TP_CLIENTE, ");
+				sql.append(		"TB_CLIENTE.TEL_CLIENTE, ");
+				sql.append(		"TB_CLIENTE.EMAIL_CLIENTE, ");
+				sql.append(		"TB_CLIENTE_PF.CPF_CLI, ");
+				sql.append(		"TB_CLIENTE_PF.RG_CLI, ");
+				sql.append(		"TB_CLIENTE_PF.DT_NSCMT_CLI, ");
+				sql.append(		"TB_CLIENTE_PF.SEXO_CLI ");
+				sql.append(	"FROM ");
+				sql.append(	    "TB_CLIENTE TB_CLIENTE ");
+				sql.append(		"LEFT JOIN TB_CLIENTE_PF TB_CLIENTE_PF ");
+				sql.append(			"ON TB_CLIENTE.ID_CLI = TB_CLIENTE_PF.ID_CLI");
+
+				preparedStatement = connection.prepareStatement(sql.toString());
+				resultSet = preparedStatement.executeQuery();
+				result = new ArrayList<>();
+
+				while (resultSet.next()) {
+					ClienteVo vo = new ClienteVo();
+					
+					vo.setId_cli		   ( resultSet.getInt("ID_CLI") );
+					vo.setNm_cliente	   ( resultSet.getString("NM_CLIENTE") );
+					vo.setTp_cliente	   ( resultSet.getString("TP_CLIENTE") );
+					vo.setTel_cliente	   ( resultSet.getString("TEL_CLIENTE") );
+					vo.setEmail_cliente	   ( resultSet.getString("EMAIL_CLIENTE") );
+					vo.setCpf_cli		   ( resultSet.getString ("CPF_CLI") );
+					vo.setRg_cli		   ( resultSet.getString ("RG_CLI") );
+					vo.setDt_nscmt_cli	   ( resultSet.getDate   ("DT_NSCMT_CLI") );
+					vo.setSexo_cli		   ( resultSet.getString ("SEXO_CLI") );
+					
+					result.add(vo);
+				}
+
+				return result;
+				
+			} catch (SQLException sqle) {
+				throw new SQLException(sqle);
+			} finally {
+				closeResultSet(resultSet);
+				closeStatement(preparedStatement);
+				closeConnection(connection);
+			}
+		} finally {
+			System.out.println("finalizando metodo: obterListaClienteEPF()");
+		}
+	}
+	
 	public List<ClienteVo> obterListaClienteEPJ() throws SQLException {
 		try {
 			System.out.println("iniciando metodo: obterListaClienteEPJ().");
@@ -304,7 +367,7 @@ public class ClienteDAOANSI extends DataAccessObjectAdapter implements ClienteDA
 				closeConnection(connection);
 			}
 		} finally {
-			System.out.println("finalizando método: alterarCliente(clienteVo).");
+			System.out.println("finalizando m todo: alterarCliente(clienteVo).");
 		}
 		
 	}

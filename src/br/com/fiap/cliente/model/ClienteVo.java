@@ -39,12 +39,19 @@ public class ClienteVo {
 	private Integer cd_classificacao;
 	private Integer cd_conta;
 		
-			/*	Campos da ClientePJ */
+	/*	Campos da ClientePJ */
 	
 	private String 	cnpj;
 	private String 	razao_social;
 	private String 	nm_fantasia;
 	private Date 	dt_fundacao;
+	
+	/*	Campos da ClientePF */
+	
+	private String 	cpf_cli;
+	private String 	rg_cli;
+	private Date 	dt_nscmt_cli;
+	private String 	sexo_cli;
 	
 			/*	Construtores */
 	
@@ -115,25 +122,28 @@ public class ClienteVo {
 		return cd_classificacao;
 	}
 	
-//	private String 	cnpj;
-//	private String 	razao_social;
-//	private String 	nm_fantasia;
-//	private Date 	dt_fundacao;
-	
 	@Override
 	public String toString() { 
 		StringBuffer ts = new StringBuffer();
-		ts.append(" \n * Id cliente: " 	 	+ id_cli 	    ); 
-		ts.append(" \n * Nome cliente: "      + nm_cliente    );
-		ts.append(" \n * Tipo cliente: " 	    + tp_cliente    );
-		ts.append(" \n * Telefone cliente: " 	+ tel_cliente);
-		ts.append(" \n * Email Cliente: " 	+ email_cliente );
+		ts.append(" \n * Id cliente: " 	 	  + id_cli ); 
+		ts.append(" \n * Nome cliente: "      + nm_cliente );
+		ts.append(" \n * Tipo cliente: " 	  + tp_cliente );
+		ts.append(" \n * Telefone cliente: "  + tel_cliente);
+		ts.append(" \n * Email Cliente: " 	  + email_cliente );
 						
-		if(cnpj != null && razao_social != null && nm_fantasia != null && dt_fundacao != null) {
-			ts.append("\n * Cnpj: "			+ cnpj );
-			ts.append("\n * Nome Fantasia: " 	+ nm_fantasia);
-			ts.append("\n * DATA FUNDAÇÃO: " 	+ dt_fundacao 	);
+		if ( cnpj != null && razao_social != null && nm_fantasia != null && dt_fundacao != null ) {
+			ts.append("\n * Cnpj: "				+ cnpj );
+			ts.append("\n * Nome Fantasia: " 	+ nm_fantasia );
+			ts.append("\n * Data fundação: " 	+ dt_fundacao );
 		}
+		
+		if ( cpf_cli != null && rg_cli != null && dt_nscmt_cli != null && sexo_cli != null ) {
+			ts.append("\n * CPF: "				+  cpf_cli );
+			ts.append("\n * RG cliente: " 		+  rg_cli );
+			ts.append("\n * Data nascimento: " 	+  dt_nscmt_cli );
+			ts.append("\n * Sexo: " 			+  sexo_cli );
+		}
+		
 		return ts.toString();
 	}
 
@@ -179,6 +189,38 @@ public class ClienteVo {
 
 	public void setDt_fundacao(Date dt_fundacao) {
 		this.dt_fundacao = dt_fundacao;
+	}
+
+	public String getCpf_cli() {
+		return cpf_cli;
+	}
+
+	public void setCpf_cli(String cpf_cli) {
+		this.cpf_cli = cpf_cli;
+	}
+
+	public String getRg_cli() {
+		return rg_cli;
+	}
+
+	public void setRg_cli(String rg_cli) {
+		this.rg_cli = rg_cli;
+	}
+
+	public Date getDt_nscmt_cli() {
+		return dt_nscmt_cli;
+	}
+
+	public void setDt_nscmt_cli(Date dt_nscmt_cli) {
+		this.dt_nscmt_cli = dt_nscmt_cli;
+	}
+
+	public String getSexo_cli() {
+		return sexo_cli;
+	}
+
+	public void setSexo_cli(String sexo_cli) {
+		this.sexo_cli = sexo_cli;
 	}
 
 }

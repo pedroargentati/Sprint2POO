@@ -12,5 +12,6 @@ public interface ClienteDAO {
 	public void alterarCliente	(ClienteVo clienteVo) throws SQLException;
 	public ClienteVo obterClientePorChave(Integer id_cli) throws SQLException;
 	public List<ClienteVo> obterListaCliente () throws SQLException;
-
+	public List<ClienteVo> obterListaClienteEPJ() throws SQLException;
+	public List<ClienteVo> obterListaClienteEPF() throws SQLException;
 }
